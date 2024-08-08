@@ -11,10 +11,24 @@ class UserController extends Controller
 
         return view('layouts.admin');
     }
-    public function addUser(request $request){
+    public function viewAdmin() {
+        $admins = admin::all();
+        return view('layouts.admin', compact('admins'));
+    }
 
+    public function addUser(Request $request) {
         admin::create($request->all());
-        return redirect('layouts.admin');
+        return redirect('/admin')->with('message', 'User created successfully!');
+    }
 
+    public function editUser($id) {
+        $admin = admin::find($id);
+        return view('layouts.edit_admin', compact('admin'));
+    }
+
+    public function updateUser(Request $request, $id) {
+        $admin = admin::find($id);
+        $admin->update($request->all());
+        return redirect('/admin')->with('message', 'User updated successfully!');
     }
 }

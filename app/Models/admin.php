@@ -8,5 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class admin extends Model
 {
     use HasFactory;
-    protected $fillable =['name','email'];
+    // Specify the table if it's not the pluralized form of the model name
+    protected $table = 'admins';
+
+    // Specify the fillable attributes
+    protected $guarded = [];
 }

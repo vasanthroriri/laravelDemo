@@ -8,4 +8,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [UserController::class, 'userview']); // Add middleware if needed for authenticationdd middleware if needed for authentication
-Route::post('/addUser', [UserController::class, 'addUser']); // Add middleware if needed for authenticationdd middleware if needed for authentication
+Route::get('/admin', [UserController::class, 'viewAdmin'])->name('admin.view');
+Route::post('/admin/add', [UserController::class, 'addUser'])->name('admin.add');
+Route::get('/admin/edit/{id}', [UserController::class, 'editUser'])->name('admin.edit');
+Route::put('/admin/update/{id}', [UserController::class, 'updateUser'])->name('admin.update');
